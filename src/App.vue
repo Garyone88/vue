@@ -1,28 +1,40 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+     <el-button type="success">成功按钮</el-button>
+     <el-input-number v-model="num" @change="handleChange" :min="1" :max="10" label="描述文字"></el-input-number>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'app',
-  components: {
-    HelloWorld
+    data() {
+      return {
+        num: 1
+      };
+    },
+    methods: {
+      handleChange(value) {
+        console.log(value);
+      }
+    },
+    mounted(){
+
+    // 请求测试接口
+    console.log(this);
+    this.$axios({
+      url: "https://api.github.com/users",
+      method: "GET",
+      // get请求参数
+      params: {
+        abc: 123
+      }
+    }).then(res => {
+      console.log(res)
+    })
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
