@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
+import Login from './pages/Login.vue'
+import Admin from './pages/Admin.vue'
 
 import Element from "element-ui"
 import "element-ui/lib/theme-chalk/index.css"
@@ -15,8 +17,12 @@ Vue.config.productionTip = false
 
 const routes = [
   {
+    path:"/",
+    component: Admin
+  },
+  {
     path:"/login",
-    conponent:"Login"
+    component: Login
   }
 ]
 
