@@ -6,7 +6,10 @@
       </el-aside>
       <el-container>
         <el-header><Header @click="handleToggle"></Header></el-header>
-        <el-main><Breadcrumb></Breadcrumb></el-main>
+        <el-main>
+          <Breadcrumb></Breadcrumb>
+          <router-view></router-view>
+        </el-main>
       </el-container>
     </el-container>
   </div>
