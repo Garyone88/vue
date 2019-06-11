@@ -1,5 +1,5 @@
 <template>
-  <div class="view">
+  <div class="loginview">
     <el-form
       :model="ruleForm"
       :rules="rules"
@@ -77,14 +77,14 @@ export default {
 </script>
 
 <style scoped>
-  .view {
+  .loginview {
     background: #ccc;
     width: 100%;
     position:absolute;
     top: 0;
     bottom: 0;
   }
-  .view .demo-ruleForm {
+  .loginview .demo-ruleForm {
     position: absolute;
     width: 500px;
     top: 50%;

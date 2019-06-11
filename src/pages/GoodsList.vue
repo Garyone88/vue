@@ -2,7 +2,7 @@
   <div class="goodslist">
     <el-row type="flex" justify="space-between" class="tools">
       <div>
-        <el-button type="primary">新增</el-button>
+        <el-button type="primary" @click="handleToAdd">新增</el-button>
         <el-button type="danger" @click="handleDels">删除</el-button>
       </div>
       <div>
@@ -88,6 +88,7 @@ export default {
             const{message,status} = res.data;
             if(status === 0) {
                 this.$message.success(message);
+                this.getList();
             }else {
                 this.$message.error(message);
             }
@@ -101,12 +102,10 @@ export default {
     // 逐项单个删除
     handleDelete(index, row) {
       this.delGood(row.id);
-      this.getList();
     },
     // 左上角单个或多个删除
     handleDels(){
         this.delGood(this.choose);
-        this.getList();
     },
     // 选择项
     handleSelectionChange(val) {
@@ -131,6 +130,10 @@ export default {
     // 处理筛选搜索
     handleSearch(){
         this.getList();
+    },
+    // 页面跳转，跳转商品添加页
+    handleToAdd(){
+      this.$router.push("/admin/goods-add")
     }
   },
   mounted() {

@@ -6,6 +6,7 @@ import Login from './pages/Login.vue'
 import Admin from './pages/Admin.vue'
 import GoodsList from './pages/GoodsList.vue'
 import CategoryList from './pages/CategoryList.vue'
+import GoodsAdd from './pages/GoodsAdd.vue'
 
 // 组件模块；
 import Element from "element-ui"
@@ -46,6 +47,11 @@ const routes = [
         path:"category-list",
         component: CategoryList,
         meta:"栏目列表"
+      },
+      {
+        path:"goods-add",
+        component: GoodsAdd,
+        meta:"商品添加"
       }
     ]
   }

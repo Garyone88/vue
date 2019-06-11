@@ -1,5 +1,5 @@
 <template>
-  <div class="view">
+  <div class="adminview">
     <el-container>
       <el-aside width="auto">
         <AsideNav :isShow="isShow"></AsideNav>
@@ -50,18 +50,14 @@ export default {
 .el-aside {
   background-color: #d3dce6;
   color: #333;
-  text-align: center;
-  line-height: 200px;
 }
 
 .el-main {
   background-color: #e9eef3;
   color: #333;
-  text-align: center;
-  line-height: 160px;
 }
 
-.view > .el-container {
+.adminview > .el-container {
   width: 100%;
   position: absolute;
   top: 0;
