@@ -51,7 +51,7 @@ export default {
         if (valid) {
           this.$axios({
         method: "POST",
-        url: "http://127.0.0.1:8899/admin/account/login",
+        url: "http://localhost:8899/admin/account/login",
         data,
         withCredentials: true      
       }).then(res => {

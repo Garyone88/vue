@@ -7,6 +7,7 @@ import Admin from './pages/Admin.vue'
 import GoodsList from './pages/GoodsList.vue'
 import CategoryList from './pages/CategoryList.vue'
 import GoodsAdd from './pages/GoodsAdd.vue'
+import GoodsEdit from './pages/GoodsEdit.vue'
 
 // 组件模块；
 import Element from "element-ui"
@@ -52,12 +53,40 @@ const routes = [
         path:"goods-add",
         component: GoodsAdd,
         meta:"商品添加"
-      }
+      },
+      {
+        path:"goods-edit/:id",
+        component: GoodsEdit,
+        meta:"商品编辑"
+      },
     ]
   }
 ]
 
-const router = new VueRouter({routes})
+const router = new VueRouter({routes});
+
+router.beforeEach((to,from,next)=>{
+  axios({
+    url: "http://localhost:8899/admin/account/islogin",
+    method:"GET",
+    withCredentials: true
+  }).then(res=>{
+    const {code} = res.data;
+    if(to.path === '/login'){
+      if (code === 'logined'){
+        next("/admin/goods-list")
+      }else {
+        next();
+      }
+    }else {
+      if (code === 'logined'){
+        next()
+      }else {
+        next("/login");
+      }
+    }
+  })
+})
 
 new Vue({
   render: h => h(App),

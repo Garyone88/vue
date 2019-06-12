@@ -6,7 +6,9 @@
       <div class="arrow" @click="handleClick">
         <i class="el-icon-back" ref="arrow"></i>
       </div>
-      <div>admin 超级管理员 退出</div>
+      <div>admin 超级管理员 
+        <el-button type="info" plain @click="handleQuit">退出</el-button>
+      </div>
     </el-row>
   </div>
 </template>
@@ -14,6 +16,7 @@
 <script>
 export default {
     methods:{
+      // 展开、缩进按钮
         handleClick(){
             this.$emit("click");
             // 改变箭头样式；
@@ -24,6 +27,16 @@ export default {
               this.$refs.arrow.classList.add("el-icon-back");
               this.$refs.arrow.classList.remove("el-icon-right");
             }
+        },
+        // 退出按钮
+        handleQuit(){
+          this.$axios({
+            url:"http://localhost:8899/admin/account/logout",
+            method: "GET",
+          }).then(res=>{
+            console.log(res);
+            console.log(this.$router);
+          })
         }
     }
 };

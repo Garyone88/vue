@@ -119,7 +119,7 @@ export default {
     // 提交按钮
     onSubmit() {
       this.$axios({
-        url: "http://localhost:8899/admin/goods/add/goods",
+        url: `http://localhost:8899/admin/goods/edit/${this.$route.params.id}`,
         method: "POST",
         data: this.form,
         withCredentials: true
@@ -178,16 +178,33 @@ export default {
     }
   },
   mounted() {
-    // 请求类别的数据
     this.$axios({
       url: "http://localhost:8899/admin/category/getlist/goods",
       method: "GET"
     }).then(res => {
       const { status, message } = res.data;
+      // 所有的类别数据保存到categorys
       this.categorys = message;
+    });
+    const { id } = this.$route.params;
+    // 请求类别的数据
+    this.$axios({
+      url: `http://localhost:8899/admin/goods/getgoodsmodel/${id}`,
+      method: "GET"
+    }).then(res => {
+      const { status, message } = res.data;
+      this.imageUrl = message.imgList[0].url;
+      this.form = {
+        ...message,
+        // category_id转化为数字
+        category_id: +message.category_id,
+      };
+      console.log(this.form);
+      
     });
   },
   components: {
+    // 富文本组件
     quillEditor
   }
 };
@@ -219,4 +236,3 @@ export default {
   display: block;
 }
 </style>
-

@@ -22,7 +22,7 @@
       <el-table-column label="标题" width="300">
         <template slot-scope="scope">
           <el-row type="flex" align="middle">
-            <!-- <img :src="scope.row.imgurl" /> -->
+            <img :src="scope.row.imgurl" />
             <div>{{scope.row.title}}</div>
           </el-row>
         </template>
@@ -73,7 +73,7 @@ export default {
       this.$axios({
         methods: "GET",
         url:
-          `http://127.0.0.1:8899/admin/goods/getlist?pageIndex=${this.pageIndex}&pageSize=${this.pageSize}&searchvalue=${this.input}`
+          `http://localhost:8899/admin/goods/getlist?pageIndex=${this.pageIndex}&pageSize=${this.pageSize}&searchvalue=${this.input}`
       }).then(res => {
         this.tableData = res.data.message;
         this.total = res.data.totalcount;
@@ -83,7 +83,7 @@ export default {
     delGood(id) {
         this.$axios({
             methods: "GET",
-            url:`http://127.0.0.1:8899/admin/goods/del/${id}`
+            url:`http://localhost:8899/admin/goods/del/${id}`
         }).then(res=>{
             const{message,status} = res.data;
             if(status === 0) {
@@ -97,6 +97,7 @@ export default {
     // 编辑
     handleEdit(index, row) {
     //   console.log(index, row);
+     this.$router.push(`/admin/goods-edit/${row.id}`)
     },
 
     // 逐项单个删除
@@ -151,6 +152,9 @@ export default {
 }
 .goodslist {
   line-height: 1;
+}
+img {
+  width: 80px;
 }
 .tools {
     margin: 20px 0;
