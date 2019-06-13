@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
+import store from './store'
 
 // 页面路径；
 import Login from './pages/Login.vue'
@@ -90,5 +91,6 @@ router.beforeEach((to,from,next)=>{
 
 new Vue({
   render: h => h(App),
-  router
+  router,
+  store
 }).$mount('#app')

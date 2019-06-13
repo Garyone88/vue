@@ -56,6 +56,9 @@ export default {
         withCredentials: true      
       }).then(res => {
         const{status,message} = res.data
+
+        this.$store.commit("setUser",message)
+
         if(status === 0){
           this.$router.push("/")
         }

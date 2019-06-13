@@ -33,11 +33,21 @@ export default {
           this.$axios({
             url:"http://localhost:8899/admin/account/logout",
             method: "GET",
+            withCredentials: true
           }).then(res=>{
-            console.log(res);
+            const {status,message} = res.data;
+            if (status === 0){
+              this.$message.success(message);
+
+              this.$router.push("/login");
+              localStorage.removeItem("user")
+            }
             console.log(this.$router);
           })
         }
+    },
+    mounted() {
+      this.user = this.$store.state.user;
     }
 };
 </script>

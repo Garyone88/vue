@@ -60,6 +60,7 @@
           :on-preview="handlePictureCardPreview"
           :on-success="handleCardSuccess"
           :on-remove="handleRemove"
+          :fileList="form.fileList"
         >
           <i class="el-icon-plus"></i>
         </el-upload>
